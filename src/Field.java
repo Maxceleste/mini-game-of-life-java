@@ -31,7 +31,7 @@ public class Field{
 
         for (String[] row : screen){
             for (String field : row){
-                visual += "O ";
+                visual += "█";
             }
 
             visual += "\n";
