@@ -1,13 +1,12 @@
 package src;
-
 import java.util.Random;
 
 public class Field{
     
     // Declaring our variables
-    int screenY;
-    int screenX;
-    boolean[][] screen;
+    public int screenY;
+    public int screenX;
+    public boolean[][] screen;
 
     //Constructor
     public Field(int screenY, int screenX){
@@ -34,7 +33,6 @@ public class Field{
             for (boolean field : row){
                 visual += field ? "█" : " ";
             }
-
             visual += "\n";
         }
 
