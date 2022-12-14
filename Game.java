@@ -4,7 +4,7 @@ import src.Rules;
 class Game{
     
     public static void main(String [] args){
-        Field field = new Field(20, 20);
+        Field field = new Field(30, 150);
         Rules rules = new Rules(field.screenY, field.screenX);
 
         field.createField();
