@@ -1,10 +1,17 @@
-import src.Field;
-import src.Rules;
+import src.*;
 
 class Game{
     
     public static void main(String [] args){
-        Field field = new Field(30, 150);
+        
+        Title title = new Title();
+        title.defineValues();
+
+        int screenY = title.screenSizeY;
+        int screenX = title.screenSizeX;
+
+
+        Field field = new Field(screenY, screenX);
         Rules rules = new Rules(field.screenY, field.screenX);
 
         field.createField();
