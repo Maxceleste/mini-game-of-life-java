@@ -12,7 +12,7 @@ class Game{
 
 
         Field field = new Field(screenY, screenX);
-        Rules rules = new Rules(field.screenY, field.screenX);
+        Rules rules = new Rules(field.screenY, field.screenX, title.aliveRules, title.deadRules);
 
         field.createField();
         field.randomField();

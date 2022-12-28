@@ -1,12 +1,19 @@
 package src;
 
+import java.util.stream.IntStream;
+
 public class Rules {
     int rows;
     int columns;
+    int[] aliveRules;
+    int[] deadRules;
 
-    public Rules(int rows, int columns){
+    public Rules(int rows, int columns, int[]aliveRules, int[]deadRules){
         this.rows = rows - 1;
         this.columns = columns - 1;
+        this.aliveRules = aliveRules;
+        this.deadRules = deadRules;
+
     }
 
     public boolean[][] nextGeneration(boolean[][] generation){
@@ -18,26 +25,27 @@ public class Rules {
         for (int row = 0; row <= rows ; row++){
             for (int column = 0; column <= columns; column++){
                 boolean cell = generation[row][column];
-                int neighboorsAlive = 0;
+                int neighboorsAliveCount = 0;
                 int[][] neighboorsPositions = determineNeighboors(row, column);
 
 
                 for(int i = 0; i < 8; i++){
                     boolean alive = generation[neighboorsPositions[i][0]][neighboorsPositions[i][1]];
                     if (alive){
-                        neighboorsAlive += 1;
+                        neighboorsAliveCount += 1;
                     }
                 }
 
+                final int neighboorsAlive = neighboorsAliveCount;
 
                 if (cell){
-                    if (neighboorsAlive < 2 || neighboorsAlive > 3){
-                        nextGen[row][column] = false;
-                    } else {
+                    if (IntStream.of(aliveRules).anyMatch(x -> x == neighboorsAlive)){
                         nextGen[row][column] = true;
+                    } else {
+                        nextGen[row][column] = false;
                     }
                 } else {
-                    if (neighboorsAlive == 3){
+                    if (IntStream.of(deadRules).anyMatch(x -> x == neighboorsAlive)){
                         nextGen[row][column] = true;
                     }
                 }
